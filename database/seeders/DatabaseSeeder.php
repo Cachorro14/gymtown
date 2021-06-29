@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PaquetesSeeder::class,
             RutinasSeeder::class,
+            SucursalesSeeder::class,
         ]);
     }
 }

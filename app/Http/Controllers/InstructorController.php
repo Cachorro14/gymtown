@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class InstructorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,6 +42,13 @@ class InstructorController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required|string|min:5|max:255',
+            'telefono' => 'required|string|min:5|max:255',
+            'horario' => 'required|string|min:5|max:255',
+            'sueldo' => 'required|integer|min:1|',
+        ]);
+
         Instructor::create($request->all());
 
         return redirect()->route('instructor.index');
@@ -73,7 +85,9 @@ class InstructorController extends Controller
      */
     public function update(Request $request, Instructor $instructor)
     {
-        Instructor::where('id',$instructor->id)->update($request->except('_token','_method'));
+        Instructor::where('id', $instructor->id)->update(
+            $request->except('_token', '_method')
+        );
 
         return redirect()->route('instructor.show', $instructor);
     }
@@ -87,8 +101,7 @@ class InstructorController extends Controller
     public function destroy(Instructor $instructor)
     {
         $instructor->delete();
-        
-        return redirect()->route('instructor.index');
 
+        return redirect()->route('instructor.index');
     }
 }

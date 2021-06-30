@@ -14,17 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('inicio', function() {
+Route::get('inicio', function () {
     return view('inicio');
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('inicio');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/dashboard', function () {
+        return view('dashboard');
+    })
+    ->name('dashboard');
 
-
-Route::resource('instructor', InstructorController::class);
+Route::resource('instructor', InstructorController::class); //->middleware('auth');

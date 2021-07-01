@@ -110,7 +110,17 @@
                         </span>
                     @enderror
                 </label>
-
+                <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Edad</span>
+                    <input
+                        type="number"
+                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        placeholder="15"
+                        id="edad"
+                        name="edad"
+                        value="{{ old('edad') }}"
+                    />
+                </label>
                 <div class="flex mt-6 text-sm">
                     <label class="flex items-center dark:text-gray-400">
                     <input
@@ -118,8 +128,8 @@
                         class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                     />
                     <span class="ml-2">
-                        I agree to the
-                        <span class="underline">privacy policy</span>
+                        Estoy de acuerdo con las
+                        <span class="underline">Politicas de Privacidad</span>
                     </span>
                     @error('checkbox')
                         <span class="text-xs text-red-600 dark:text-red-400">
@@ -145,7 +155,7 @@
                   class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
                   href="/login"
                 >
-                  Already have an account? Login
+                  ¿Quieres Registrarte?
                 </a>
               </p>
             </div>

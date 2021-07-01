@@ -18,7 +18,11 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        //
+        $asistencias = Asistencia::all();
+        $instructores = Instructor::all();
+        $paquetes = Paquete::all();
+        $sucursales = Sucursal::all();
+        return view('', compact('instructores'));
     }
 
     /**

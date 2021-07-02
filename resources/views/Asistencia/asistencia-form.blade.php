@@ -8,7 +8,7 @@
     Agregar entrada
 </h4>
 <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-    <form action="{{route('asistencia.store') }}" method="POST">
+    <form action="{{ route('asistencia.create') }}" method="POST">
         @csrf()
         <div class="grid gap-6 mb-8 md:grid-cols-2">
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">

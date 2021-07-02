@@ -19,11 +19,6 @@ class AsistenciaController extends Controller
      */
     public function index()
     {
-        $asistencias = Asistencia::all();
-        $instructores = Instructor::all();
-        $paquetes = Paquete::all();
-        $sucursales = Sucursal::all();
-        return view('asistencia.asistencia-index', compact('asistencias'));
     }
 
     /**
@@ -122,7 +117,52 @@ class AsistenciaController extends Controller
      *
      */
 
-    public function salida(Asistencia $asistencia)
+    public function asistenciaIndex()
     {
+        $asistencias = Asistencia::all();
+        $instructores = Instructor::all();
+        $paquetes = Paquete::all();
+        $sucursales = Sucursal::all();
+        return view('asistencia.asistencia-index', compact('asistencias'));
+    }
+    public function asistenciaForm()
+    {
+        $asistencias = Asistencia::all();
+        $instructores = Instructor::all();
+        $paquetes = Paquete::all();
+        $sucursales = Sucursal::all();
+        $rutinas = Rutina::all();
+        $users = User::all();
+
+        return view(
+            'asistencia.asistencia-form',
+            compact(
+                'asistencias',
+                'instructores',
+                'paquetes',
+                'sucursales',
+                'rutinas',
+                'users'
+            )
+        );
+    }
+
+    public function asistenciaCreate(Asistencia $asistencia)
+    {
+        $request->merge([
+            'fecha' => today(),
+            'entrada' => now(),
+        ]);
+        Asistencia::create($request->all());
+
+        return redirect()->route('asistencia.index');
+    }
+
+    public function asistenciaSalidaUP(Asistencia $asistencia)
+    {
+        $asistencia->salida = now();
+        $asistencia->save();
+
+        return redirect()->route('asistencia.index');
     }
 }

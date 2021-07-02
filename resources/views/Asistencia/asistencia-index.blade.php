@@ -7,7 +7,7 @@
     <!-- With actions -->
             <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300" >
             <a class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                href="{{ route('asistencia.create') }}">
+                href="{{ route('asistencia.form') }}">
                 Añadir Entrada
             </a>
             </h4>
@@ -55,21 +55,18 @@
                       <td class="px-4 py-3 text-sm">
                         {{ $asistencia->rutina_id }}
                       </td>
-                      <td class="px-4 py-3 text-sm">
-                        <form action="{{ route('asistencia.update', $asistencia) }}" method="POST">
-                            @method('PATCH')
-                            <div>
-                                <div class ="mt-4">
-                                    <button class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-                                    aria-Label="Registrar Salida"
-                                    >
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-                                        <span>Registrar Salida</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                      </td>
+                      @if($asistencia->salida == NULL)
+                        <td class="px-4 py-3 text-sm">
+                          <div class ="mt-4">
+                              <a class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+                              href="{{route('asistencia.salida',$asistencia)}}"
+                              >
+                              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                  <span>Registrar Salida</span>
+                              </a>
+                          </div>
+                        </td>
+                      @endif
                     </tr>
                   @endforeach
                   </tbody>

@@ -57,7 +57,7 @@ Route::middleware(['auth:sanctum', 'verified'])
 
 Route::resource('instructor', InstructorController::class); //->middleware('auth');
 
-Route::resource('asistencia', AsistenciaController::class);
+// Route::resource('asistencia', AsistenciaController::class);
 // Route::post('/asistencia.asistencia-salida', [AsistenciaController::class])->name(
 //     'paquete'
 // );
@@ -73,3 +73,27 @@ Route::get('/paquete', [VistaController::class, 'paqueteShow'])->name(
 Route::post('/paquete', [VistaController::class, 'paqueteUpdate'])->name(
     'paquete'
 );
+
+Route::get('/asistencia/index', [
+    AsistenciaController::class,
+    'asistenciaIndex',
+])->name('asistencia.index');
+
+Route::get('/asistencia/salida/{asistencia}', [
+    AsistenciaController::class,
+    'asistenciaSalidaUP',
+])->name('asistencia.salida');
+
+// Route::post('/asistencia/salidaUp', [
+//     AsistenciaController::class,
+//     'asistenciaSalidaUP',
+// ])->name('asistencia.salidaUp');
+
+Route::get('/asistencia/form', [
+    AsistenciaController::class,
+    'asistenciaForm',
+])->name('asistencia.form');
+Route::post('/asistencia/create', [
+    AsistenciaController::class,
+    'asistenciaCreate',
+])->name('asistencia.create');

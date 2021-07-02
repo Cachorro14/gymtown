@@ -41,7 +41,7 @@
               <h1
                 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"
               >
-                Forgot password
+                ¿Olvido su Contraseña?
               </h1>
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf

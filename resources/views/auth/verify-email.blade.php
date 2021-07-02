@@ -1,5 +1,6 @@
 <x-guest-layout>
     <x-jet-authentication-card>
+    <img class="pading-center" src="{{ asset('img/gallery5.png') }}" alt="" width="200" height="200">
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
         </x-slot>

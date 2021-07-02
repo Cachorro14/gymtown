@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Paquete;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -32,7 +32,7 @@ class User extends Authenticatable
         'password',
         'peso',
         'edad',
-        'password',
+        'altura',
         'telefono',
     ];
 
@@ -63,4 +63,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = ['profile_photo_url'];
+
+    public function paquete()
+    {
+        return $this->hasOne(Paqute::class);
+    }
 }

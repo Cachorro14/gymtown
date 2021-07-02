@@ -7,6 +7,7 @@ use App\Models\Instructor;
 use App\Models\Paquete;
 use App\Models\Rutina;
 use App\Models\Sucursal;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AsistenciaController extends Controller
@@ -22,7 +23,7 @@ class AsistenciaController extends Controller
         $instructores = Instructor::all();
         $paquetes = Paquete::all();
         $sucursales = Sucursal::all();
-        return view('', compact('instructores'));
+        return view('asistencia.asistencia-index', compact('asistencias'));
     }
 
     /**
@@ -32,9 +33,25 @@ class AsistenciaController extends Controller
      */
     public function create()
     {
-        //
-    }
+        $asistencias = Asistencia::all();
+        $instructores = Instructor::all();
+        $paquetes = Paquete::all();
+        $sucursales = Sucursal::all();
+        $rutinas = Rutina::all();
+        $users = User::all();
 
+        return view(
+            'asistencia.asistencia-form',
+            compact(
+                'asistencias',
+                'instructores',
+                'paquetes',
+                'sucursales',
+                'rutinas',
+                'users'
+            )
+        );
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -43,7 +60,13 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->merge([
+            'fecha' => today(),
+            'entrada' => now(),
+        ]);
+        Asistencia::create($request->all());
+
+        return redirect()->route('asistencia.index');
     }
 
     /**
@@ -54,7 +77,6 @@ class AsistenciaController extends Controller
      */
     public function show(Asistencia $asistencia)
     {
-        //
     }
 
     /**
@@ -65,7 +87,6 @@ class AsistenciaController extends Controller
      */
     public function edit(Asistencia $asistencia)
     {
-        //
     }
 
     /**
@@ -75,9 +96,12 @@ class AsistenciaController extends Controller
      * @param  \App\Models\Asistencia  $asistencia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asistencia $asistencia)
+    public function update(Asistencia $asistencia)
     {
-        //
+        $asistencia->salida = now();
+        $asistencia->save();
+
+        return redirect()->route('asistencia.index');
     }
 
     /**
@@ -97,4 +121,8 @@ class AsistenciaController extends Controller
      *
      *
      */
+
+    public function salida(Asistencia $asistencia)
+    {
+    }
 }

@@ -8,6 +8,7 @@ use App\Models\Instructor;
 use App\Models\Paquete;
 use App\Models\Rutina;
 use App\Models\Sucursal;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class VistaController extends Controller
@@ -44,6 +45,20 @@ class VistaController extends Controller
     {
         $rutinas = Rutina::all();
         return view('rutinas', compact('rutinas'));
+    }
+    public function paqueteShow()
+    {
+        $paquetes = Paquete::all();
+        $users = User::all();
+        return view('paquete', compact('paquetes', 'users'));
+    }
+    public function paqueteUpdate(Request $request)
+    {
+        User::where('id', $request->user_id)->update([
+            'paquete_id' => $request->paquete_id,
+        ]);
+
+        return redirect()->route('index');
     }
 
     /**

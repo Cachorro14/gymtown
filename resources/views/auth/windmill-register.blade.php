@@ -78,6 +78,26 @@
                         </span>
                     @enderror
                 </label>
+                <div class="mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">
+                  Tipo
+                </span>
+                <div class="mt-2">
+                  <label class="inline-flex items-center text-gray-600 dark:text-gray-400">
+                    <input type="radio" class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="tipo" value="Empleado">
+                    <span class="ml-2">Empleado</span>
+                  </label>
+                  <label class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400">
+                    <input type="radio" class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" name="tipo" value="Usuario">
+                    <span class="ml-2">Usuario</span>
+                  </label>
+                  @error('tipo')
+                        <span class="text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
+              </div>
                 <label class="block mt-4 text-sm">
                     <span class="text-gray-700 dark:text-gray-400">{{ __('Password') }}</span>
                     <input
@@ -120,6 +140,62 @@
                         name="edad"
                         value="{{ old('edad') }}"
                     />
+                    @error('edad')
+                        <span class="text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </label>
+                <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Peso</span>
+                    <input
+                        type="number"
+                        step="0.001"
+                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        placeholder="73.300"
+                        id="peso"
+                        name="peso"
+                        value="{{ old('peso') }}"
+                    />
+                    @error('peso')
+                        <span class="text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </label>
+                <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Altura cm</span>
+                    <input
+                        type="number"
+                        step="0.001"
+                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        placeholder="1.80"
+                        id="altura"
+                        name="altura"
+                        value="{{ old('altura') }}"
+                    />
+                    @error('altura')
+                        <span class="text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </label>
+                <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Teléfono</span>
+                    <input
+                        type="number"
+                        step="0.001"
+                        class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        placeholder="xxxxxxxxxx"
+                        id="telefono"
+                        name="telefono"
+                        value="{{ old('telefono') }}"
+                    />
+                    @error('telefono')
+                        <span class="text-xs text-red-600 dark:text-red-400">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </label>
                 <div class="flex mt-6 text-sm">
                     <label class="flex items-center dark:text-gray-400">
@@ -155,7 +231,7 @@
                   class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
                   href="/login"
                 >
-                  ¿Quieres Registrarte?
+                  ¿Quieres Iniciar Sesion?
                 </a>
               </p>
             </div>

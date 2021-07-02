@@ -5,10 +5,10 @@
 <h4
   class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
 >
-    Agregar entrada
+    Agregar paquete a Usuario
 </h4>
 <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
-    <form action="{{route('asistencia.store') }}" method="POST">
+    <form action="{{ route('paquete') }}" method="POST">
         @csrf()
         <div class="grid gap-6 mb-8 md:grid-cols-2">
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
@@ -22,7 +22,7 @@
                 >
                     <option>---</option>
                     @foreach($users as $user)
-                        @if($user->tipo=="Usuario" )
+                        @if($user->tipo=="Usuario" and $user->paquete_id==NULL )
                             <option value="{{$user->id}}">{{$user->name}}</option>
                         @endif
                     @endforeach
@@ -32,47 +32,15 @@
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                 <label class="block mt-4 text-sm">
                 <span class="text-gray-700 dark:text-gray-400">
-                  Instructores
+                  Paquetes 
                 </span>
                 <select 
                     class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                    name="instructor_id"
+                    name="paquete_id"
                 >
                     <option>---</option>
-                    @foreach($instructores as $instructor)
-                            <option value="{{$instructor->id}}">{{$instructor->nombre}}</option>
-                    @endforeach
-                </select>
-              </label>
-            </div>
-            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                <label class="block mt-4 text-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                  Sucursales 
-                </span>
-                <select 
-                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                    name="sucursal_id"
-                >
-                    <option>---</option>
-                    @foreach($sucursales as $sucursal)
-                        <option value="{{$sucursal->id}}">{{$sucursal->nombre}} </option>
-                    @endforeach
-                </select>
-              </label>
-            </div>
-            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                <label class="block mt-4 text-sm">
-                <span class="text-gray-700 dark:text-gray-400">
-                  Rutinas 
-                </span>
-                <select 
-                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                    name="rutina_id"
-                >
-                    <option>---</option>
-                    @foreach($rutinas as $rutina)
-                        <option value="{{$rutina->id}}">{{$rutina->nombre}}</option>
+                    @foreach($paquetes as $paquete)
+                        <option value="{{$paquete->id}}">{{$paquete->nombre}} ${{$paquete->precio}}</option>
                     @endforeach
                 </select>
               </label>

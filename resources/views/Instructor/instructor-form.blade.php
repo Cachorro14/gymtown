@@ -88,5 +88,7 @@
                             <span>Guardar</span>
                         </button>
                     </div>
+                </form>
+            </form>    
 
 @endsection
